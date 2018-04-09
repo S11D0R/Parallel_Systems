@@ -5,7 +5,6 @@
 #define MAX_RAND 21
 #define ARRAY_SIZE 10
 
-
 using namespace std;
 
 int getCountByRank(int rank, int size) {
@@ -34,23 +33,11 @@ int main(int argc, char *argv[]) {
 	int *ai = (int*)malloc(ARRAY_SIZE * sizeof(int)+1);
 	int *rbuf = (int*)malloc(length * sizeof(int)+1);
 
-
 	if (rank == 0) {
 		for (int i = 0; i<ARRAY_SIZE; ++i) {
 			ai[i] = rand() % MAX_RAND - ARRAY_SIZE/2;
 			printf("init a[%d]=%d\n", i, ai[i]);
 		}
-
-		
-		//MPI_Bcast(a, ARRAY_SIZE, MPI_INT, 0, MPI_COMM_WORLD);
-		//for (int i = 1; i<size; ++i) {
-			//int length1 = getCountByRank(i, size);
-			//MPI_Send(a, length1, MPI_INT, i, 0, MPI_COMM_WORLD);
-
-			//if (i<size - 1) {
-			//	a += length1;
-			//}
-		//}
 	}
 
 	MPI_Scatter(ai, length, MPI_INT, rbuf, length, MPI_INT, 0, MPI_COMM_WORLD);
@@ -72,8 +59,6 @@ int main(int argc, char *argv[]) {
 			cout << "Number of even positive elements: " << globalSum << endl;
 
 		}
-	
-
 	MPI_Finalize();
 }
 

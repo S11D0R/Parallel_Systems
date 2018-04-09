@@ -5,7 +5,6 @@
 #define MAX_RAND 21
 #define ARRAY_SIZE 10
 
-
 using namespace std;
 
 int getCountByRank(int rank, int size) {
@@ -46,9 +45,7 @@ int main(int argc, char *argv[]) {
 			}
 		}
 	}
-
-
-
+	
 	int sum = 0;
 	if (rank != 0) {
 		MPI_Recv(ai, max, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -75,4 +72,3 @@ int main(int argc, char *argv[]) {
 
 	MPI_Finalize();
 }
-
